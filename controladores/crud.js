@@ -72,6 +72,7 @@ exports.validarcorreo = (req, res) => {
             
                  
             }
+            
         )
 
       }else{
@@ -159,7 +160,7 @@ exports.guardar =(req,res)=>{
     const contrasehash= bcryptjs.hashSync(contraseña,8);
     //let contraseñahas=  sha1(contraseña);
    // let contraseñahas= crypto.createHash('sha1').update(contraseña).digest('hex');
-    conexion.query('INSERT INTO usuarios SET ?' , {nombre:nombre,apellido:apellido,telefono:telefono,direcion:direccion,correo:correo,rol_id:rol, contraseña:contrasehash},(error,resultado)=>{
+    conexion.query('INSERT INTO usuarios SET?' , {nombre:nombre,apellido:apellido,telefono:telefono,direcion:direccion,correo:correo,rol_id:rol, contraseña:contrasehash},(error,resultado)=>{
   
         try {
     
@@ -169,8 +170,8 @@ exports.guardar =(req,res)=>{
             else {
                 res.redirect('admin?success=true&message=Logged In Successfully');
             }
-         console.log(resultado);
-         console.log(contraseñahas);
+         console.log(correo);
+         console.log(contrasehash);
         } catch (error) {
            if (error.code === 'ER_DUP_ENTRY') {
             res.redirect('/crear?fail=true&message=Logged In Successfully');

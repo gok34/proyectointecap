@@ -1,0 +1,8 @@
+
+
+
+DB_HOST= localhost
+DB_USER= root
+DB_PASSWORD =
+DB_DATABASE =crud_usuarios
+PORT = 5000

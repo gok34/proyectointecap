@@ -1,9 +1,12 @@
 const express = require('express');
 const app= express();
-const puerto= process.env.PORT || 3000;
+const http = require('http');
+
+const puerto= process.env.PORT || 5000;
 const dotenv = require('dotenv');
 const bcryptjs = require('bcryptjs');
 const session = require('express-session');
+const morgan = require('morgan');
 
 
 
@@ -20,7 +23,7 @@ dotenv.config({path:'./env/.env'});
 app.use('/resources',express.static('public'));
 app.use('/resources',express.static(__dirname+'/public'));
 
-
+app.use(morgan('dev'));
 //5----motor de p plantillas
 app.set('view engine','ejs');
 
@@ -40,5 +43,10 @@ app.use('/', require('./router'));
 
 //escuchado el puerto 5000
 app.listen(puerto,(req, res)=>{
-console.log ('server correndo en puerto 5000');
+    console.log("el servidor Coorriendo: "+puerto);
 });
+
+http.createServer(function (req, res) {
+    res.writeHead(200, {'Content-Type': 'text/plain'});
+    res.end('Hello World!');
+  }).listen(8080);
